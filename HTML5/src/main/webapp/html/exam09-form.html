@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<form method = "post" action="result.html">
+		<fieldset>
+			<legend>이름입력하기</legend>
+		<div>
+			<label for = "user_name">이름 : </label>
+			<input type = "text" name = "user_name" id = "user_name"/>
+		</div>
+		<br/>
+		<div>
+			<input type = "submit" value = "입력완료"/>
+			<input type = "reset" value = "초기화"/>
+			<input type = "button" value = "입력완료"
+			onclick = "javascript:location.href = 'result.html'"/>
+			
+			<!-- 이미지는 자동으로 submit -->
+			<input type = "image" src = "../image/ok.png" width = "30" height = "30" alt = "OK"/>
+			<!-- submit 안함 -->
+			<input type = "image" src = "../image/ok.png" width = "30" height = "30" alt = "OK"
+			onclick = "return false"/>
+			
+		</div>
+		</fieldset>
+	</form>
+</body>
+</html>
+<!-- 
+submit ~ action
+- <form>태그 안에 있는 입력상자의 데이터를 들고 페이지 이동
+
+* button    
+button ~ onclick
+<input type="button" /> -> 그냥 버튼
+<button  /> -> 자동 submit
+
+* 이미지
+<img src="" alt="" /> ->그냥 이미지
+<input type="image" src="" alt="" /> -> 자동 submit
+
+페이지 이동
+Get
+-> default
+-> query string(주소 표시줄) 통해 이동
+-> http://localhost:8080/HTML5/html/result.html?변수=값&변수=값&변수=값
+-> http://localhost:8080/HTML5/html/result.html?user_name=홍길동
+
+post
+-> 클라이언트가 post요청 했을 때
+-> http://localhost:8080/HTML5/html/result.html
+ -->

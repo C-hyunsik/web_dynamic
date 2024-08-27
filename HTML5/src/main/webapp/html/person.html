@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=UTF-8>
+<title>Insert title here</title>
+</head>
+<body>
+<form method = post action="personresult.html">
+	<table border = 2 width = 500 cellspacing = 0>
+		<tr>
+			<th width = 100>이름</th>
+			<td>
+			<input type = text name = name id = name placeholder= 이름입력 />
+			</td>
+		</tr>
+		<tr>
+			<th width = 100>성별</th>
+			<td>
+			<input type = radio name = gender id = gender_m value = M checked/>
+			<label for = gender_m>남자</label>
+			<input type = radio name = gender id = gender_f value = F/>
+			<label for = gender_f>여자</label>
+			</td>
+		</tr>
+		<tr>
+			<th width = 100>색깔</th>
+			<td>
+				<select style = "width : 110px" name = color>
+					<optgroup label="색깔">
+						<option id = color value = red>빨강</option>
+						<option id = color value = green>초록</option>
+						<option id = color value = blue>파랑</option>
+						<option id = color value = magenta>보라</option>
+						<option id = color value = cyan>하늘</option>
+					</optgroup>
+				</select>
+			</td>
+		</tr>
+		<tr align = center>
+			<th width = 100>취미</th>
+			<td>
+			<input type = checkbox name = hobby id = hobby1 value = 독서/>
+				<label for = hobby1>독서</label>
+				<input type = checkbox name = hobby id = hobby2 value = 영화/>
+				<label for = hobby2>영화</label>
+				<input type = checkbox name = hobby id = hobby3 value = 음악/>
+				<label for = hobby3>음악</label>
+				<input type = checkbox name = hobby id = hobby4 value = 게임/>
+				<label for = hobby4>게임</label>
+				<input type = checkbox name = hobby id = hobby5 value = 운동/>
+				<label for = hobby5>운동</label>
+			</td>
+		</tr>
+		<tr>
+			<th width = 100>과목</th>
+			<td>
+			<select style = "width: 110px" name = subject id = subject multiple size = 6>
+					<option value = JAVA>JAVA</option>
+					<option value = Servlet>Servlet</option>
+					<option value = HTML selected>HTML</option>
+					<option value = Spring>Spring</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td colspan = 2 align = center>
+			<input type = submit value = SEND
+			onclick = "location.href = 'personresult.html'"/>
+			<input type = reset value = CANCEL />
+				
+			</td>
+		</tr>
+	
+	</table>
+	</form>
+</body>
+</html>

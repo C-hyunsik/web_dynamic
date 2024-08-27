@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>Cell과 내용 사이의 여백 - cellpadding</h1>
+	<table border = 2 cellpadding = 50>
+		<tr>
+		<td>1-1</td>
+		<td>2-2</td>
+		</tr>
+	</table>
+	<hr/>
+	<h1>Cell과 Cell 사이의 여백 - cellspacing</h1>
+	<table border = 2 cellspacing = 20>
+		<tr>
+		<td>1-1</td>
+		<td>2-2</td>
+		</tr>
+	</table>
+	<hr/>
+	<font size = 4>
+	<table border = 1 width = 210 cellpadding = 5 cellspacing = 0>
+		<tr>
+		<td width = 140 height = 40 align = left>1-1</td>
+		<td align = center>1-2</td>
+		</tr>
+		
+		<tr>
+		<td align = left height = 40>2-1</td>
+		<td align = center>2-2</td>
+		</tr>
+		
+		<tr>
+		<td colspan = 2 align = center height = 40>3-1</td>
+		</tr>
+		
+		<tr>
+		<td rowspan = 2 width = 140 height = 150>
+		
+		<img src = "../image/img1.gif" alt = "망상토끼" width = 140, height = 140
+		onclick = "location.href = 'https://www.naver.com'"
+		style = "cursor: pointer;">
+		
+		</td>
+		<td align = center>4-2</td>
+		</tr>
+		<tr>
+		<td align = center>5-2</td>
+		</tr>
+	</table>
+	</font>
+</body>
+</html>

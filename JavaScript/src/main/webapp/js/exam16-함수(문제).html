@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Java Script 16-1</title>
+</head>
+<body>
+	<h3>1~10 사이의 덧셈 문제를 발생합니다.</h3>
+	
+	<input type = button value="문제 생성" onclick = "start()"><br><br>
+	
+	<span id = exam></span><span id = question></span>
+	
+	&nbsp;<input type = button value="결과 보기" onclick = "printResult()">
+	
+	&nbsp;<input type = button value="결과 숨기기" onclick = "hideResult()">
+	
+<script type="text/javascript">
+function sum(x, y){
+	return x + y;
+}
+function start(){	//Math.random()
+	var x = parseInt(Math.random() * 10 + 1);
+	var y = parseInt(Math.random() * 10 + 1);
+	document.getElementById("exam").innerText = x + " + " + y + " = ";
+	document.getElementById("question").innerText = "?";
+	
+	result = sum(x, y);
+	return result;
+}
+function printResult(){
+	document.getElementById("question").innerHTML = "<font color = 'red'>" + result + "</font>"
+}
+function hideResult(){
+	document.getElementById("question").innerText = "?";
+}
+</script>
+</body>
+</html>

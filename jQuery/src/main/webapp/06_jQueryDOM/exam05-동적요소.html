@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<input type = button value = 추가 />
+	<input type = button value = 삭제 />
+	<!-- 동적 요소 -->
+	<ul>
+		<li></li>
+	</ul>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	let i = 1;
+	
+	$('input:eq(0)').click(function(){
+		let li1 = $('<li>').css('color','red').html(`추가 항목 ${i++}`);	//<li>태그 생성
+		let li2 = $('<li>').css('color','green').html(`추가 항목 ${i++}`);	//<li>태그 생성
+		let li3 = $('<li>').css('color','blue').html(`추가 항목 ${i++}`);	//<li>태그 생성
+		$('ul').append(li1);
+		$('ul').append(li2);
+		$(li3).appendTo('ul');
+	});
+	$('input:eq(1)').click(function(){
+		$('ul').empty();	//삭제
+		i = 1;
+	});
+});
+</script>
+</body>
+</html>
+<!-- 
+	A.append(B)		=>A에 B를 추가한다.	A-B
+	B.appendTo(A)	=>B를 A에 추가한다.	A-B
+ -->

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Java Script 24</title>
+</head>
+<body onload = "autoNo()">
+	<p>
+		고객님의 인증번호는 <strong id = auth>000000</strong>입니다.
+	</p>
+	
+	<input type = button value = "인증번호 새로 받기" onclick = "refresh()">
+	<input type = button value = "네이버로 이동하기" onclick = "goNaver()">
+
+<script type="text/javascript">
+const autoNo = () => {
+	let value = "";
+	for(let i = 1; i <= 6; i++){
+		value += random(0,9);	//value = value + random(0,9)
+	}
+	document.getElementById("auth").innerText = value
+}
+const refresh = () => {
+	location.reload();	//= 새로고침
+}
+const goNaver = () => {
+	if(confirm("정말로 네이버로 이동하시겠습니까?")) location.href = "https://www.naver.com";
+}
+const random = (x, y) => {
+	return Math.floor(Math.random() * (y-x+1) + x);	//x~y사이의 난수 발생
+}
+</script>
+	
+</body>
+</html>

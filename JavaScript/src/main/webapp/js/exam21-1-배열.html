@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Java Script 21-1</title>
+</head>
+<body>
+
+<script type="text/javascript">
+	//concat - 배열 합치기, 새로운 배열 생성, 원본 변경X
+	let arr1 = [10, 20, 30]
+	let arr2 = ["사과", "딸기", "바나나"]
+	let arr3 = arr1.concat();	//복사본
+	let arr4 = arr1.concat(arr2);
+	
+	document.write(`arr1 = ${arr1} <br>`)
+	document.write(`arr3 = ${arr3} <br>`)
+	document.write(`arr4 = ${arr4} <br>`)
+	document.write(`<hr/>`)
+	
+	//join - 배열을 문자열로 만든다
+	let str1 = arr1.join()		//구분자가 없으면 기본값으로 콤마(,)를 넣어서 문자열로 만든다.
+	document.write(`str1 = ${str1} <br>`)
+	
+	let str2 = arr1.join('|')	//배열 요소 사이에 구분자(|)를 넣어서 문자열로 만든다.
+	document.write(`str2 = ${str2} <br>`)
+	document.write(`<hr/>`)
+	
+	//배열에 요소 추가
+	//push		- 뒤에 추가
+	//unshift	- 앞에 추가
+	arr1.push(40);
+	arr1.push(50);
+	document.write(`arr1 = ${arr1} <br>`)
+	
+	arr2.push("복숭아","수박")
+	document.write(`arr2 = ${arr2} <br>`)
+	
+	arr2.unshift("망고");
+	document.write(`arr2 = ${arr2} <br>`)
+	document.write(`<hr/>`)
+	
+	//배열에 요소 삭제(추출)
+	//pop		- 뒤의 요소 삭제(추출)
+	//shift		- 앞의 요소 삭제(추출)
+	arr1.pop();
+	document.write(`arr1 = ${arr1} <br>`)
+	
+	let num	= arr1.pop();
+	document.write(`arr1 = ${arr1} <br>`)
+	document.write(`num = ${num} <br>`)
+	
+	let str = arr2.shift();
+	document.write(`arr2 = ${arr2} <br>`)
+	document.write(`str = ${str} <br>`)
+	document.write(`<hr/>`)
+	
+	//splice()	- 배열 요소 추가/삭제
+	//			- 원본 변경
+	let arr5 = arr2.splice(2);	//splice(인덱스)
+	document.write(`arr2 = ${arr2} <br>`)
+	document.write(`arr5 = ${arr5} <br>`)
+	
+	let arr6 = arr5.splice(1,1);	//splice(인덱스, 개수) : 인덱스 번째부터 개수만큼 가져옴
+	document.write(`arr5 = ${arr5} <br>`)
+	document.write(`arr6 = ${arr6} <br>`)
+	
+	//splice(인덱스, 개수, "추가할 내용") : 인덱스 번째부터 개수만큼 삭제하고 그 자리에 "추가할 내용" 추가
+	let arr7 = arr5.splice(1,0,"딸기")
+	document.write(`arr5 = ${arr5} <br>`)
+	document.write(`arr7 = ${arr7} <br>`)
+	
+	//slice()	- 배열 요소 추출 -> 주로 사용
+	//			- 원본 변경X
+	let arr8 = arr1.concat(40, 50, 60);
+	document.write(`arr8 = ${arr8} <br>`)
+	
+	let arr9 = arr8.slice(4)	//slice(인덱스) : 인덱스부터 끝까지 추출
+	document.write(`arr8 = ${arr8} <br>`)
+	document.write(`arr9 = ${arr9} <br>`)
+	
+	let arr10 = arr8.slice(2,4)	//slice(인덱스, 인덱스) : 인덱스부터 인덱스-1까지 추출
+	document.write(`arr10 = ${arr10} <br>`)
+	
+	</script>
+</html>

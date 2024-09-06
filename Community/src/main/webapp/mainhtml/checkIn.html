@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel = stylesheet href = "../css/event.css">
+</head>
+<body>
+	<div id = title>
+		<h1>회원가입</h1>
+	</div>
+	<form name = form1 id = join>
+		<div id = input>
+			<h3>아이디</h3>
+			<input type = text name = user_id required/>
+			<div id = idDiv></div>
+			
+			<h3>비밀번호</h3>
+			<input type = password name = user_pw required/>
+			<div id = pwdDiv></div>
+			
+			<h3>이름</h3>
+			<input type = text name = user_name required/>
+			<div id = nameDiv></div>
+			
+			<h3>성별</h3>
+			<div class="select">
+				<input type="radio" id="man" name="gender" value = M><label for="man">남자</label>
+				<input type="radio" id="woman" name="gender" value = W><label for="woman">여자</label>
+     		</div>
+			
+			<h3>이메일</h3>
+			<input type = email name = email pattern = [a-zA-Z0-9]+[@][a-zA-Z0-9]+[.]+[a-zA-Z]+[.]*[a-zA-Z]* required />
+			<div id = emailDiv></div>
+			<br/><br/>
+			<input type = submit value = 회원가입 class = myButton />
+			<input type = reset value = 다시작성 class = myButton />
+			<input type = button value = 뒤로가기 class = myButton 
+			onclick = "history.go(-1)" />
+		</div>
+	</form>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script type="text/javascript">
+$(function (){
+	$('input[name = user_id]').blur(function(){
+		let user_id = $('input[name = "user_id"]').val();
+		if(!user_id){
+			$('#idDiv').html("아이디를 입력하세요.");
+			$('input[name = user_id]').focus();
+			return false;
+		}
+		else{
+			$('#idDiv').empty();
+			$.post('../jsp/idCheck.jsp',
+					{'user_id':user_id},
+					function(data){
+						let xmlData = $.parseXML(data);
+						let exist = eval($(xmlData).find('exist').text());
+						if(exist){
+							$('#idDiv').html(`<span style = "color: red; font-weight: bold;">이미 사용 중인 아이디 입니다.</span>`);
+							$('input[name = user_id]').focus();
+						}else{
+							$('#idDiv').html(`<span style = "color: blue; font-weight: bold;">사용 가능한 아이디 입니다.</span>`);
+						}
+					}).fail(function(e){
+						console.log(e);
+					});
+		}
+	});
+	$('input[name = user_pw]').blur(function(){
+		let user_pw = $('input[name = "user_pw"]').val();
+		if(!user_pw){
+			$('#pwdDiv').html("비밀번호를 입력하세요.");
+			$('input[name = user_pw]').focus();
+			return false;
+		}
+		else{
+			$('#pwdDiv').empty();
+		}
+	});
+	$('input[name = user_name]').blur(function(){
+		let user_name = $('input[name = "user_name"]').val();
+		if(!user_name){
+			$('#nameDiv').html("이름를 입력하세요.");
+			$('input[name = user_name]').focus();
+			return false;
+		}
+		else{
+			$('#nameDiv').empty();
+		}
+	});
+	$('input[name = email]').blur(function(){
+		let email = $('input[name = "email"]').val();
+		if(!email){
+			$('#emailDiv').html("이메일를 입력하세요.(example@naver.com)");
+			$('input[name = email]').focus();
+			return false;
+		}
+		else{
+			$('#emailDiv').empty();
+		}
+	});
+	$('input[type = submit]').click(function(){
+		if(!$('input[name="gender"]').is(':checked')){
+			alert("성별을 선택하세요.");
+			$('input[name = "gender"]:eq(0)').prop('checked', true);
+			return false;
+		}
+		$.post('../jsp/checkIn.jsp',
+			$('#join').serialize(),
+			function(data){
+				XMLdata = $.parseXML(data)
+				result = eval($(XMLdata).find('result').text());
+				console.log(result);
+				if(result){
+					alert('회원가입이완료되었습니다.');
+					window.open('./index.html');
+				}
+			}).fail(function(e){
+				alert('회원가입을 실패.')
+				console.log(e)
+			});
+	});
+});
+</script>
+</body>
+</html>

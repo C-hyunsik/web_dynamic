@@ -1,0 +1,81 @@
+@charset "UTF-8";
+body {
+    padding: 0;
+    margin: 0;
+}
+#title{
+	margin:0;
+	padding:10px;
+	background: linear-gradient(45deg, skyblue 20%, deepskyblue 60%, blue);
+}
+h1{
+	margin-left: 20%;
+}
+#join{
+	padding: 10px;
+	margin: 10px;
+}
+#input{
+	display: inline-block;
+	padding: 0 0 15px 15px;
+	margin: 10px 0 0 25%;
+	width: 50%;
+	justify-content: center;
+	border: 3px solid lightblue;
+}
+#input > input, #input > select, #input > button, #input > div > button {
+    width: 99%;
+    display: block;
+    font-size: 17px;
+    color: #222;
+    background: #eef;
+    border: 3px solid #d3d3d3;
+    margin: 5px auto;
+    padding: 5px 0;
+}
+.select input[type=radio]{
+    display: none;
+}
+.select input[type=radio]+label{
+    display: inline-block;
+    cursor: pointer;
+    height: 40px;
+    width: 150px;
+    border: 1px solid #333;
+    line-height: 40px;
+    text-align: center;
+    font-weight:bold;
+    font-size:1.4em;
+}
+.select input[type=radio]+label{
+    background-color: #fff;
+    color: #333;
+}
+.select input[type=radio]:checked+label{
+    background-color: #333;
+    color: #fff;
+}
+#input .myButton {
+    box-shadow: inset 0px 1px 0px 0px #54a3f7; /* inset : 박스 안쪽의 그림자 */
+    background: linear-gradient(to bottom, #007dc1 5%, #0061a7 100%);
+    /* background-color: #007dc1; */
+    border-radius: 3px;
+    border: 1px solid #124d77;
+    display: inline-block;
+    color: #ffffff;
+    font-family: arial;
+    font-size: 15px;
+    font-weight: normal;
+    padding: 6px 24px;
+    text-decoration: none;
+    text-shadow: 0px 1px 0px #154682;
+}
+#input .myButton:hover {
+    background: linear-gradient(to bottom, #0061a7 5%, #007dc1 100%);
+    background-color: #0061a7;
+}
+#idDiv, #pwdDiv, #nameDiv, #genderDiv, #emailDiv{
+	color: red;
+	font-size: 12pt;
+	font-weight: bold;
+}

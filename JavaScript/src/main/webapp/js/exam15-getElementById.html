@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Java Script 15</title>
+</head>
+<body>
+<h1> 10 + 50 = <span id = question>?</span></h1>
+<input type=button value=결과보기 onclick="printresult()">
+<script type="text/javascript">
+function sum(x, y){
+	return x + y;
+}
+function printresult(){
+	var result = sum(10,50)
+	//<span>태그 얻어오기
+	var mytag = document.getElementById("question");	//-> DOM문법
+	//alert(mytag);	-> 태그의 주소를 가져옴
+	//alert(mytag.tagName)	//대문자로 태그의 이름을 가져옴
+	
+	//mytag.innerText = "<font color = 'red'>" + result + "</font>";
+	//innerHTML -> 문자열로 받지않고 HTML 태그로 받음
+	mytag.innerHTML = "<font color = 'red'>" + result + "</font>";
+	
+}
+</script>
+</body>
+</html>
+<!-- 
+이벤트 처리
+ㆍ 특정한 상황이 발생했을 때, 사용자가 정의하는 특정한 동작(함수)들을 호출되도록 하는 것.
+ㆍ Javascript를 사용하는 이유는 <body> 안의 어떠한 태그를 사용자의 이벤트에 반응하도록 제어하기 위함이다.
+
+(1) 이벤트 종류
+ㆍ onBlur - 문서나 윈도우, 프레임세트, 폼 요소에서 현재 입력 포커스가 사라질 때
+ㆍ onClick - 링크, 이미지맵 영역, 폼 요소가 클릭되었을 때
+ㆍ onFocus - 문서나 윈도우, 프레임세트, 폼 요소에서 현재 입력 포커스가 놓였을 때
+ㆍ onLoad - 이미지, 문서, 프레임이 로드될 때
+ㆍ onMouseOver - 태그의 요소 위로 마우스 커서가 들어갈 때
+ㆍ onMouseOut - 태그의 요소 위에서 마우스 커서가 빠져나갈 때
+
+(2) 제어대상 지정
+ㆍ태그의 id로 제어할 특정 태그를 지정한다.
+ document.getElementById("아이디") 로 자바스크립트로 태그를 가져온다.
+ Element -> 모든 태그의 부모
+ -->

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>기상청 API를 이용한 날씨 정보</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        #weather {
+            margin-top: 20px;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+
+    <h1>현재 날씨 정보</h1>
+    <div>
+        <label for="city">도시를 선택하세요:</label>
+        <select id="city">
+            <option value="108">서울</option>
+            <option value="159">부산</option>
+            <option value="133">대구</option>
+            <option value="156">인천</option>
+            <option value="119">광주</option>
+            <option value="131">대전</option>
+            <option value="112">울산</option>
+        </select>
+        <button id="getWeather">날씨 정보 가져오기</button>
+    </div>
+
+    <div id="weather">
+        <h2>날씨 정보</h2>
+        <p id="weatherData">정보를 가져오는 중...</p>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            $('#getWeather').click(function() {
+                var cityCode = $('#city').val();
+                var apiKey = 'TUExQsncaJ9+Rk/TMH3TibMXJcgNkoVQbq99q8ZcXeevc8XJUzt7w2UUB3SOo1N+DEtCWTgTGfdvaA64RbHY+Q=='; // 여기에 기상청 API 키를 입력하세요
+
+                $.ajax({
+                    url: `http://apis.data.go.kr/1360000/VilageFcstInfoService/getVilageFcst?serviceKey=${apiKey}&numOfRows=10&pageNo=1&dataType=JSON&base_date=20210824&base_time=0500&nx=60&ny=127`,
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function(data) {
+                        var weatherItems = data.response.body.items.item;
+                        var weatherInfo = '';
+
+                        weatherItems.forEach(function(item) {
+                            weatherInfo += `<p>${item.category}: ${item.fcstValue}</p>`;
+                        });
+
+                        $('#weatherData').html(weatherInfo);
+                    },
+                    error: function() {
+                        $('#weatherData').html('날씨 정보를 가져오는 데 실패했습니다.');
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Java Script 22</title>
+</head>
+<body onload = "starttime()">
+	<h1 id = timer>현재시간을 보여줍니다</h1>
+
+<script type="text/javascript">
+	//let now = new Date()	//내장 객체
+	//document.write(now + "<br/>");
+	//document.write(now.toLocaleString());
+	
+	function starttime(){
+		/* setInterval(() => {
+			let today = new Date();
+			document.write(today.toLocaleString() + "<br/>");
+		}, 1000); */
+		//1초마다
+		setInterval(printtime ,1000);	//단위 - 밀리세컨드 1/1000	*함수 괄호 안씀
+	}
+	function printtime(){
+		var days = ["일", "월", "화", "수", "목", "금", "토"];
+		var today = new Date();
+		
+		var yy = today.getFullYear();	//년
+		var mm = today.getMonth() + 1;	//월, 1월 => 0, 2월 => 1
+		var dd = today.getDate();		//일
+		
+		var i = today.getDay();			//요일(0~6)
+		var day = days[i];
+		
+		let hh = today.getHours();
+		let mi = today.getMinutes();
+		let ss = today.getSeconds();
+		
+		let result = `${yy}-${mm}-${dd} ${day}요일 ${hh}:${mi}:${ss}`;
+		document.getElementById("timer").innerHTML = result;
+	}
+</script>
+</body>
+</html>

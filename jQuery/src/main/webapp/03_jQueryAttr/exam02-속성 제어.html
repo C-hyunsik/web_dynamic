@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>속성 제어</h1>
+	<p>클릭하세요.</p>
+	<img src = ../image/1.jpg width = 500 height = 300 alt = 카카오단체사진 />
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script type="text/javascript">
+$(function(){
+		let fileName = 1;
+	$('img').click(function(){
+		fileName = (fileName % 4) + 1; //1, 2, 3, 4
+		
+		$(this).attr('src',`../image/${fileName}.jpg`)
+	});
+});
+</script>
+</body>
+</html>

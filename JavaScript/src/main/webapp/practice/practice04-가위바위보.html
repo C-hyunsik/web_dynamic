@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>가위바위보 한판!</title>
+<style type="text/css">
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    font-size: 1.4em;
+}
+
+img{
+	width : 150px;
+	height: 150px;
+	border : 1px solid black;
+	border-radius: 30%;
+}
+#result{
+	color: blue;
+}
+#sissor{
+	background: red;
+}
+#rock{
+	background: green;
+}
+#paper{
+	background: yellow;
+}
+</style>
+</head>
+<body onload = "money()">
+	<table>
+		<tr id = button>
+			<td><a href = # onclick = "s_com_rand(); return false;">
+				<img id = sissor src = ../image/sissor.png alt = 가위></a></td>
+			<td><a href = # onclick = "r_com_rand(); return false;">
+				<img id = rock src = ../image/rock.png alt = 바위></a></td>
+			<td><a href = # onclick = "p_com_rand(); return false;">
+				<img id = paper src = ../image/paper.png alt = 보></a></td>
+		</tr>
+	</table>
+	<div id = result align = center></div>
+	<br><br>
+	<input type = button value = 끝내기 onclick = "window.close()">
+<script type="text/javascript">
+/* window.onload = function(){ //= body태그에 onload 대체용
+	~~~
+} */
+var str
+function money(){
+	str = parseInt(prompt("투입할 돈을 입력하세요",""));
+	if(!isNaN(str)){
+		if(str < 100){
+			alert("실행할 수 없습니다.")
+			window.close();
+		}
+		else return str;
+	}
+	else{
+		alert("숫자형식으로 입력하세요")
+		window.close();
+	}
+}
+function s_com_rand(){
+	if(str > 0){
+		let n = parseInt(Math.random() * 3 + 1);
+		switch(n){
+		case 1 : str = str - 100; document.getElementById("result")
+				 .innerHTML = "컴퓨터 : 가위&emsp;&emsp;" +
+							 "나 : 가위 <br><br>비겼다.";
+				 alert("남은 돈 : " + str); break;
+				
+		case 2 : str = str - 100; document.getElementById("result")
+				 .innerHTML = "컴퓨터 : 바위&emsp;&emsp;" +
+							 "나 : 가위 <br><br>졌다.";
+				 alert("남은 돈 : " + str); break;
+		case 3 : str = str + 200; document.getElementById("result")
+				 .innerHTML = "컴퓨터 : 보&emsp;&emsp;" + 
+							  "나 : 가위 <br><br>이겼다.";
+				 alert("남은 돈 : " + str); break;
+		}//switch
+	}//if
+	else if (str < 100){
+		alert("남은 돈이 부족하여 게임을 종료합니다. 남은 잔액 : " + str);
+		window.close();
+	}
+}
+
+function r_com_rand(){
+	if(str > 0){
+		let n = parseInt(Math.random() * 3 + 1);
+		switch(n){
+		case 1 : str = str + 200; document.getElementById("result")
+				 .innerHTML = "컴퓨터 : 가위&emsp;&emsp;" +
+							 "나 : 바위 <br><br>이겼다.";
+				 alert("남은 돈 : " + str); break;
+				
+		case 2 : str = str - 100; document.getElementById("result")
+				 .innerHTML = "컴퓨터 : 바위&emsp;&emsp;" +
+							 "나 : 바위 <br><br>비겼다.";
+				 alert("남은 돈 : " + str); break;
+		case 3 : str = str - 100; document.getElementById("result")
+				 .innerHTML = "컴퓨터 : 보&emsp;&emsp;" + 
+							  "나 : 바위 <br><br>졌다.";
+				 alert("남은 돈 : " + str); break;
+		}//switch
+	}//if
+	else if (str < 100){
+		alert("남은 돈이 부족하여 게임을 종료합니다. 남은 잔액 : " + str);
+		window.close();
+	}
+}
+
+function p_com_rand(){
+	if(str > 0){
+		let n = parseInt(Math.random() * 3 + 1);
+		switch(n){
+		case 1 : str = str - 100; document.getElementById("result")
+				 .innerHTML = "컴퓨터 : 가위&emsp;&emsp;" +
+							 "나 : 보 <br><br>졌다.";
+				 alert("남은 돈 : " + str); break;
+				
+		case 2 : str = str + 200; document.getElementById("result")
+				 .innerHTML = "컴퓨터 : 바위&emsp;&emsp;" +
+							 "나 : 보 <br><br>이겼다.";
+				 alert("남은 돈 : " + str); break;
+		case 3 : str = str - 100; document.getElementById("result")
+				 .innerHTML = "컴퓨터 : 보&emsp;&emsp;" + 
+							  "나 : 보 <br><br>비겼다.";
+				 alert("남은 돈 : " + str); break;
+		}//switch
+	}//if
+	else if (str < 100){
+		alert("남은 돈이 부족하여 게임을 종료합니다. 남은 잔액 : " + str);
+		window.close();
+	}
+}
+</script>
+</body>
+</html>

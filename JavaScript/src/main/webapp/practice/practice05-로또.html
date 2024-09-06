@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>벼락부자 프로젝트</title>
+<style type="text/css">
+body{
+	padding: 0;
+	margin: 0 auto;
+}
+div{
+	display:inline-block;
+	border: none;
+	border-radius: 50%;
+	width: 100px;
+	height: 100px;
+	text-align:center;
+	font-weight: bold;
+	align-items: center;
+	line-height: 100px;
+	color: white;
+	text-shadow: -1px 0px black, 0px 1px black, 1px 0px black, 0px -1px black;
+}
+#user_list{
+	width: 600px;
+	font-size: 18px;
+	color: black;
+	text-shadow: none;
+}
+</style>
+</head>
+<body align = center>
+	<h1>로또 추첨기</h1>
+	<hr/>
+	<input type = button onclick = "lotto()" value = "로또 번호 추첨하기">
+	<br/><br/>
+	<div id = 0></div>
+	<div id = 1></div>
+	<div id = 2></div>
+	<div id = 3></div>
+	<div id = 4></div>
+	<div id = 5></div>
+	<div id = bonus></div>
+	<div id = 6></div>
+	<br/><br/>
+	<input type = button onclick = "rank()" value = "내 등수 확인하기">
+	<br>
+	<div id = user_list></div>
+	<br>
+	<span id = rank></span>
+<script type="text/javascript">
+let strarr = [];
+for(let i = 0; i < 6; i++) {
+	let str = prompt("로또 번호를 한 개씩 입력하십시오", "");
+	strarr.push(parseInt(str));  // 숫자로 변환하여 저장
+}
+const random = (x,y) =>{
+	return Math.floor(Math.random() * (y-x+1) + x);
+	
+}
+
+let value = new Array();
+const lotto = () => {
+	for(let i = 0; i < 7; i++){
+		value[i] = random(1,45);	//value = value + random(0,9)
+		for(let j = 0; j < i; j++) {
+			if(value[i] == value[j]) {
+				i--;
+				break;
+			}
+		}
+		document.getElementById("bonus").innerHTML =`<div style = "text-shadow: none; color:black;">+</div>`;
+		if(value[i] <= 10){
+			document.getElementById(i).innerHTML = `<div style = "background:yellow;">${value[i]}</div>`;
+		}
+		else if(value[i] <= 20){
+			document.getElementById(i).innerHTML = `<div style = "background:blue;">${value[i]}</div>`;
+		}
+		else if(value[i] <= 30){
+			document.getElementById(i).innerHTML = `<div style = "background:red;">${value[i]}</div>`;
+		}
+		else if(value[i] <= 40){
+			document.getElementById(i).innerHTML = `<div style = "background:black;">${value[i]}</div>`;
+		}
+		else if(value[i] <= 45){
+			document.getElementById(i).innerHTML = `<div style = "background:green;">${value[i]}</div>`;
+		}
+	}
+	return value;
+}
+const rank = () =>{
+	if (value.length === 0) {
+		alert("먼저 '로또 번호 추첨하기' 버튼을 클릭하세요.");
+		return;
+	}
+	
+	let matchCount = 0;
+	document.getElementById("user_list").innerHTML = " ";
+	for (let i = 0; i < 6; i++) {
+		document.getElementById("user_list").innerHTML += strarr[i] + " ";
+		for(let j = 0; j < 6; j++) {
+			if(strarr[i] == value[j]) {
+				matchCount++;
+				break;
+			}
+		}
+	}
+	let result;
+	if (matchCount === 6) result = "1등";
+	else if (matchCount === 5){
+		for(var i = 0; i < 6; i++){
+			if(value[6] == strarr[i])
+				result = "2등";
+			else
+				result = "3등";
+		}
+	}
+	else if (matchCount === 4) result = "4등";
+	else if (matchCount === 3) result = "5등";
+	else result = "꽝";
+	document.getElementById("rank").innerText = `${matchCount}개 일치 - ${result}`;
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Java Script 02</title>
+</head>
+<body>
+
+<script type="text/javascript">
+	let num
+	let msg
+	
+	num = 12345
+	msg = 'Hello'
+
+	document.write(num + "<br>")	//코드가 한 줄인 경우에는 세미콜론(;) 생략가능
+	document.write(msg + "<br>");
+	
+	num = "aaa";
+	document.write(num + "<br>");
+	
+	let exist = true; //boolean
+	document.write(exist + "<br>");
+	
+	let value1 = null;
+	let value2;
+	
+	document.write(value1 + "<br>");	//null 출력 -> null이라는 데이터가 들어감
+	document.write(value2 + "<br>");	//undefined -> 데이터가 없음
+</script>
+</body>
+</html>
+<!-- 
+변수
+- 변수의 자료형은 값이 할당될 때 자동으로 결정된다.
+- var, let, const(상수)으로 선언
+
+//선언(생략가능)
+var a; 
+var b;
+
+//할당
+a = 10; 
+b = 43.5;
+ -->

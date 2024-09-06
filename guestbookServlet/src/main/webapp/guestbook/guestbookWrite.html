@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>방명록</title>
+<style type="text/css">
+table{
+	border-collapse: collapse;
+}
+th, td{
+	padding: 5px;
+}
+input[name = name]{
+	width:200px;
+}
+input[name = email]{
+	width:300px;
+}
+input[name = homepage]{
+	width:350px;
+}
+input[name = subject]{
+	width:450px;
+}
+#writeBtn, #listBtn, #reWrite{
+	padding: 0.3em 1.5em;
+	font-size:1em;
+	background:gray;
+	color:white;
+	border:none;
+}
+#writeBtn:hover, #listBtn:hover, #reWrite:hover{
+	background:#212121;
+	color:white;
+	border:none;
+}
+#subjectDiv, #contentDiv{
+	color: red;
+	font-size: 8pt;
+	font-weight: bold;
+}
+</style>
+</head>
+<body>
+	<form  id = guestbookWriteForm method = post action = /guestbookServlet/write>
+		<table border = 1>
+			<tr>
+				<th width = 100 >작성자</th>
+				<td><input type = text name = name placeholder = "작성자 입력" /></td>
+			</tr>
+			<tr>
+				<th>이메일</th>
+				<td><input type = text name = email placeholder = "이메일 입력"/></td>
+			</tr>
+			<tr>
+				<th>홈페이지</th>
+				<td><input type = text name = homepage value = "http://" /></td>
+			</tr>
+			<tr>
+				<th>제목</th>
+				<td>
+					<input type = text name = subject id = subject placeholder = "제목입력" />
+					<div id = subjectDiv></div>
+				</td>
+			</tr>
+			<tr>
+				<th>내용</th>
+				<td>
+					<textarea cols = 65 rows = 15 id = content name = content ></textarea>
+					<div id = contentDiv></div>
+				</td>
+			</tr>
+			<tr>
+				<td colspan = 2 align = center>
+					<input id = writeBtn type = button value = 글쓰기 />
+					<input id = reWrite type = reset value = 다시작성 />
+					<input id = listBtn type = button value = 글목록
+						   onclick = "location.href = '/guestbookServlet/list?pg=1'"/>
+				</td>
+			</tr>
+		</table>
+	</form>
+<script type="text/javascript"	 src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	$('#writeBtn').click(function(){
+		$('#subjectDiv').empty();
+		$('#contentDiv').empty();
+		let subject = $('#subject').val();
+		let content = $('#content').val();
+		
+		if(!subject){
+			$('#subjectDiv').html('제목을 입력하세요');
+			$('#subject').focus();
+		}else if(!content){
+			$('#contentDiv').html('내용을 입력하세요');
+			$('#content').focus();
+		}else{
+			$('#guestbookWriteForm').submit();
+		}
+	});
+	$('#listBtn').click(function(){
+		$.post('/guestbookServlet/list', function(){
+		});
+	});
+});
+</script>
+</body>
+</html>

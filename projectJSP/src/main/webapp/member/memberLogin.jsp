@@ -13,7 +13,7 @@
 	
 	String name = memberDTO.getName();
 	String id = memberDTO.getId();
-	
+	String email = memberDTO.getEmail1() + "@" + memberDTO.getEmail2();
 	boolean result = false;
 	if(name != null){
 		result = true;
@@ -41,6 +41,7 @@
 	//HttpSession session = request.getSession();	//세션 생성
 	session.setAttribute("memName", name);	//세션 생성 - 기본 30분
 	session.setAttribute("memId", id);	//세션 생성 - 기본 30분
+	session.setAttribute("memEmail", email);	//세션 생성 - 기본 30분
 	
 	//세션에 데이터 실어 보내기
 	response.sendRedirect("loginOk.jsp");

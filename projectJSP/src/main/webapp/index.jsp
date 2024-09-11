@@ -3,8 +3,11 @@
 <% 
 	String name = null;
 	String id = null;
+	String email = null;
+	
 	name = (String)session.getAttribute("memName");	//자식 = (자식)부모
 	id = (String)session.getAttribute("memId");	//자식 = (자식)부모
+	email = (String)session.getAttribute("memEmail");	//자식 = (자식)부모
 	/* Cookie[] ar = request.getCookies();	//특정 쿠키만을 가져오지 못하고, 전부 꺼내옴
 	String name = null;
     String id = null;
@@ -31,11 +34,11 @@
     <h3>환영합니다, <%= name %> 님!</h3>
     <h3><a href="./member/memberLogout.jsp">로그아웃</a></h3>
     <h3><a href="./member/memberUpdateForm.jsp">회원정보수정</a></h3>
-	<h3><a href = "">글쓰기</a></h3>
+	<h3><a href = "./board/boardWriteForm.jsp">글쓰기</a></h3>
 <% } else { %>
     <h3><a href="./member/memberWriteForm.jsp">회원가입</a></h3>
     <h3><a href="./member/memberLoginForm.jsp">로그인</a></h3>
 <% } %>
-<h3><a href = "">목록</a></h3>
+<h3><a href = "./board/boardListForm.jsp?pg=1">목록</a></h3>
 </body>
 </html>

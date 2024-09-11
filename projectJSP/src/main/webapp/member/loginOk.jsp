@@ -8,6 +8,7 @@
 	String redirect = "../index.jsp";
 	String name = null;
 	String id = null;
+	String email = null;
 	//쿠키 받기
 	/*
 	Cookie[] ar = request.getCookies();	//특정 쿠키만을 가져오지 못하고, 전부 꺼내옴
@@ -29,6 +30,7 @@
 	//세션 받기
 	name = (String)session.getAttribute("memName");	//자식 = (자식)부모
 	id = (String)session.getAttribute("memId");	//자식 = (자식)부모
+	email = (String)session.getAttribute("memEmail");	//자식 = (자식)부모
 				
 %>
 <%=name %>|<%=id %>|<%=redirect %>

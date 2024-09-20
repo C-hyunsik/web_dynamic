@@ -85,7 +85,7 @@ public class UserDAO {
 
 	public List<UserDTO> search(String num, String str) {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
-		Map<String, Object> map = new HashMap<String, Object>();
+		Map<String, String> map = new HashMap<String, String>();
 		map.put("num", num);
 		map.put("str", str);
 		List<UserDTO> list = sqlSession.selectList("userSQL.search", map);

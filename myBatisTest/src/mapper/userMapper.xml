@@ -27,11 +27,20 @@
  		delete usertable where id = #{id} and pwd = #{pwd}
  	</delete>
  	<select id = "search" parameterType = "Map" resultType = "user">
- 		<if test = "num == 1">
- 			select name from usertable where name like '%'||#{str}||'%'
+ 		<!-- <if test = "num == 1">
+ 			select * from usertable where name like '%'||#{str}||'%'
  		</if>
  		<if test = "num == 2">
- 			select id from usertable where id like '%'||#{str}||'%'
- 		</if>
+ 			select * from usertable where id like '%'||#{str}||'%'
+ 		</if> -->
+ 		select * from usertable where
+ 		<choose>
+ 			<when test = "num == 1">
+ 				name like '%'||#{str}||'%'
+ 			</when>
+ 			<otherwise>
+ 				id like '%'||#{str}||'%'
+ 			</otherwise>
+ 		</choose>
  	</select>
   </mapper>

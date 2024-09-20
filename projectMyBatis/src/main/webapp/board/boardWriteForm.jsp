@@ -105,16 +105,3 @@ input[type="button"]:hover, input[type="reset"]:hover {
 <script type="text/javascript" src="../js/boardWrite.js"></script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -4,6 +4,8 @@
 <%@ page import="board.bean.BoardPaging"%>
 <%@ page import="board.dao.BoardDAO"%>
 <%@ page import="java.util.List"%>
+<%@ page import="java.text.SimpleDateFormat"%>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 
 <%
 	int pg = Integer.parseInt(request.getParameter("pg"));
@@ -26,6 +28,8 @@
 	boardPaging.setTotalA(totalA);
 	
 	boardPaging.makePagingHTML();
+	
+	request.setAttribute("list", list);
 
 %>
 <!DOCTYPE html>
@@ -67,18 +71,18 @@ span:hover {
 			<th width="150">작성일</th>
 			<th width="100">조회수</th>
 		</tr>
-		
-		<% if(list != null){ %>
-			<% for(BoardDTO boardDTO : list) { %>
+
+		<c:if test="${list != null}">
+			<c:forEach var = "boardDTO" items = "${list}">
 				<tr>
-					<td align="center"><%=boardDTO.getSeq() %></td>
-					<td><%=boardDTO.getSubject() %></td>
-					<td align="center"><%=boardDTO.getId() %></td>
-					<td align="center"><%=boardDTO.getLogtime() %></td>
-					<td align="center"><%=boardDTO.getHit() %></td>
+					<td align="center">${boardDTO.seq}</td>
+					<td>${boardDTO.subject}</td>
+					<td align="center">${boardDTO.id}</td>
+					<td align="center">${boardDTO.logtime}</td>
+					<td align="center">${boardDTO.hit}</td>
 				</tr>
-			<%}//for %>
-		<%}//if %>
+			</c:forEach>
+		</c:if>
 	</table>
 	<div style="text-align: center; width: 1000px; margin-top: 15px;">
 		<%=boardPaging.getPagingHTML() %>
@@ -91,18 +95,3 @@ function boardPaging(pg){
 </script>	
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

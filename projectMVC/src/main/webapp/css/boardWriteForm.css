@@ -1,0 +1,91 @@
+@charset "UTF-8";
+html, body {
+	width: 100%;
+	height: 100%;
+}
+html {
+	overflow-y: scroll;
+}
+
+#wrap{
+	width: 1100px; 
+	margin: 0 auto;
+}
+
+#header {
+	height: 10%;
+	text-align: center;
+}
+
+#container {
+	width: 1100px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	/* height: 500px; */
+}
+#container:after {
+	content: '';
+	display: block;
+	clear: both;
+	float: none;
+}
+
+#nav {
+	margin:-30px 40px 0 10px;
+	width: 25%;
+	height: 100%;
+	float: left;
+}
+
+#section {
+	width: 70%;
+	height: 100%;
+	float: left;
+}
+
+#footer {
+	width: 1100px;
+	height: 10%;
+}
+span {
+	display: flex;
+	font-size: 20px;
+	color: black;
+	text-align: center;
+	justify-content: center;
+	margin-bottom: 1em;
+}
+table {
+    border-collapse: separate;
+    border-radius: 10px;
+    border:1px solid #4b0082;
+}
+th, td{
+    padding: 5px;
+	color: black;
+	font-size: 18px;
+}
+table div{
+    color: red;
+    font-size: 8pt;
+    font-weight: bold;
+}
+input[type="text"], textarea {
+	width: 350px;
+	background: #ffffff;
+	font-size: 18px;
+	resize: none;
+}
+input[type="button"], input[type="reset"] {
+	color: #ffffff;
+	background: gray;
+	border-radius: 10px;
+	padding: 5px 30px;
+	border-style: none;
+	border: 2px solid black;
+}
+input[type="button"]:hover, input[type="reset"]:hover {
+	background: black;
+	font-weight: bold;
+}

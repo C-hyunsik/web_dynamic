@@ -38,7 +38,11 @@
 </style>
 <ul class = mainnav>
 	<c:if test="${memId != null }">
-	<li><a href = "${context}/board/boardWriteForm.do">글쓰기</a></li>
+		<li><a href = "${context}/board/boardWriteForm.do">글쓰기</a></li>
+		<c:if test = "${memId == 'admin'}">
+			<li><a href = "${context}/imageboard/imageboardWriteForm.do">이미지 등록</a></li>
+		</c:if>
 	</c:if>
 	<li><a href = "${context}/board/boardList.do?pg=1">목록</a></li>
+	<li><a href = "${context}/imageboard/imageboardList.do?pg=1">이미지 게시판</a></li>
 </ul>

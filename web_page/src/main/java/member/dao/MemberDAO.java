@@ -37,7 +37,6 @@ public class MemberDAO {
 			exist = true;
 		}
 		sqlSession.close();
-		
 		return exist;
 	}
 	

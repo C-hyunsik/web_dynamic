@@ -34,7 +34,7 @@
 <ul>
 	<c:if test = "${userId == null }">
 	<li><a href = "${context }/member/loginForm.do"><span>로그인</span></a></li>
-	<li><a href = "${context }/member/index.do">카페홈</a></li>
+	<li><a href = "${context }/index.do">카페홈</a></li>
 	</c:if>
 	<c:if test = "${userId != null }">
 	<li><a href = "${context }/member/updateForm.do"><span>${userNickname}님</span></a></li>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="boardSQL">
+	<insert id="boardWrite" parameterType="Map">
+		INSERT INTO Michelin_board (SEQ, ID, NAME, EMAIL, SUBJECT, CONTENT, REF) 
+		VALUES (Michelin_board_no.NEXTVAL, #{id}, #{name}, #{email}, #{subject}, #{content}, Michelin_board_no.CURRVAL)
+	</insert>
+	<select id="boardList" parameterType="Map" resultType="boardDTO">
+	  <![CDATA[
+		SELECT * FROM (
+		SELECT ROWNUM rn, tt.* FROM (
+		SELECT * FROM Michelin_board ORDER BY ref DESC, step ASC
+		) tt
+		) WHERE rn >= #{startNum} AND rn <= #{endNum}
+	  ]]>
+	</select>
+	<select id="getTotalA" resultType="Integer">
+		SELECT COUNT(*) FROM Michelin_board
+	</select>
+</mapper>

@@ -19,9 +19,13 @@ public class BoardListService implements CommandProcess{
 		int pg = Integer.parseInt(request.getParameter("pg"));
 
 		//1페이지당 5개씩
-		int endNum = pg * 5;
-		int startNum = endNum - 4;
+		//오라클
+		//int endNum = pg * 5;
+		//int startNum = endNum - 4;
 		
+		//MySQL
+		int endNum = 5;		//개수
+		int startNum = (pg * endNum) - endNum;	//시작위치, 0부터 시작
 		//DB
 		BoardDAO boardDAO = BoardDAO.getInstance();
 		List<BoardDTO> list = boardDAO.boardList(startNum, endNum);
@@ -37,6 +41,7 @@ public class BoardListService implements CommandProcess{
 		
 		boardPaging.makePagingHTML();
 		
+		request.setAttribute("pg", pg);
 		request.setAttribute("list", list);
 		request.setAttribute("pagingHTML", boardPaging.getPagingHTML().toString());
 		return "/board/boardList.jsp";

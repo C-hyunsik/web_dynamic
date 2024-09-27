@@ -16,7 +16,7 @@ import board.bean.BoardDTO;
 
 public class BoardDAO {
 	private static BoardDAO boardDAO = new BoardDAO();
-	private SqlSessionFactory sessionFactory;  
+	private SqlSessionFactory sessionFactory;
 
 	public static BoardDAO getInstance() {
 		return boardDAO;
@@ -33,7 +33,12 @@ public class BoardDAO {
 	
 	public void boardWrite(Map<String, String> map) {
 		SqlSession sqlSession = sessionFactory.openSession();
+		//Oracle
+		//sqlSession.insert("boardSQL.boardWrite", map);
+		
+		//MySQL
 		sqlSession.insert("boardSQL.boardWrite", map);
+		sqlSession.update("boardSQL.refUpdate", map);
 		sqlSession.commit();
 		sqlSession.close();
 	}
@@ -59,5 +64,39 @@ public class BoardDAO {
 		
 		return totalA;
 	}
+	public List<BoardDTO> boardView(int seq){
+		List<BoardDTO> list = new ArrayList<BoardDTO>();
+		SqlSession sqlSession = sessionFactory.openSession();
+		System.out.println(seq);
+		list = sqlSession.selectList("boardSQL.boardView", seq); 
+		sqlSession.close();
+		return list;
+	}
 
+	public void delete(int seq) {
+		SqlSession sqlSession = sessionFactory.openSession();
+		System.out.println(seq);
+		sqlSession.delete("boardSQL.boardDelete", seq);
+		sqlSession.commit();
+		sqlSession.close();
+	}
+
+	public void update(int seq, String subject, String content) {
+		SqlSession sqlSession = sessionFactory.openSession();
+		Map<String, Object> map = new HashMap<>();
+		map.put("seq", Integer.valueOf(seq));
+		map.put("subject", subject);
+		map.put("content", content);
+		sqlSession.update("boardSQL.boardUpdate", map);
+		sqlSession.commit();
+		sqlSession.close();
+	}
+
+	public void boardHitUpdate(int seq) {
+		SqlSession sqlSession = sessionFactory.openSession();
+		System.out.println(seq);
+		sqlSession.update("boardSQL.boardHitUpdate", seq);
+		sqlSession.commit();
+		sqlSession.close();
+	}
 }

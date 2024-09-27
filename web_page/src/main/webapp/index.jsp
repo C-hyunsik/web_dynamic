@@ -205,6 +205,10 @@ a:active{color : black; text-decoration:none;}
 #thumtable td:nth-child(2){
 	font-weight: bold;
 }
+#header{
+	position: sticky;
+    top: 0;
+}
 </style>
 </head>
 <body>
@@ -214,14 +218,14 @@ a:active{color : black; text-decoration:none;}
 	</div>
 	<div id = bannerimg>
 		<img src = "${context}/image/banner.png" alt = 배너 width = 1200 height = 400 
-		onclick = "location.href = '${context}/index.do'"/>
+		onclick = "location.href = '${context}/index.do'" style = "cursor:pointer;"/>
 	</div>
 	<div id = wrap>
 		<div id = menuSearch>
 			<div id = dumy></div>
 			<div id = menuWrap>
 				<div id = menu>
-					<jsp:include page = "${context}/main/menu.jsp" />
+					<jsp:include page = "./main/menu.jsp" />
 				</div>
 			</div>
 			<div id = search>
@@ -233,7 +237,7 @@ a:active{color : black; text-decoration:none;}
 		</div>
 		<div id = container>
 			<div id = nav>
-				<jsp:include page = "${context}/main/userInfo.jsp" />
+				<jsp:include page = "./main/userInfo.jsp" />
 				<div id = boardInfoWrap>
 					<div id = notice >
 						<h3>게시판</h3>
@@ -258,7 +262,7 @@ a:active{color : black; text-decoration:none;}
 				<table id = thumtable width = 100% >
 					<tr>
 						<th id = tablehead colspan = 4 align = left>최신게시글</th>
-						<th id = allPost align = right><a href = #>전체글보기></a></th>
+						<th id = allPost align = right><a href = "${context}/board/boardList.do?pg=1">전체글보기></a></th>
 					</tr>
 					<!-- 이 부분에 최신 게시글이 들어감 10개 가량 -->
 					<tr>

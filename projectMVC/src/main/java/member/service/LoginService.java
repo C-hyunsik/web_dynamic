@@ -35,10 +35,11 @@ public class LoginService implements CommandProcess {
 			
 			session.setAttribute("memName", list.get(0).getName());
 			session.setAttribute("memId", id);
+			session.setAttribute("memPwd", pwd);
+			System.out.println(pwd);
 			session.setAttribute("memEmail", list.get(0).getEmail1()+"@"+list.get(0).getEmail2());
 			
 			session.setAttribute("memDTO", list.get(0));
-			
 			return "/member/loginOk.jsp";
 		}
 	}

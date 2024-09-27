@@ -1,0 +1,87 @@
+@charset "UTF-8";
+html, body {
+	width: 100%;
+	height: 100%;
+}
+html {
+	overflow-y: scroll;
+}
+
+#wrap{
+	width: 1100px; 
+	margin: 0 auto;
+}
+
+#header {
+	height: 10%;
+	text-align: center;
+}
+
+#container {
+	margin: auto;
+	width: 1100px;
+	text-align: center;
+	/* height: 500px; */
+}
+
+#container:after {
+	content: '';
+	display: block;
+	clear: both;
+	float: none;
+}
+
+#nav {
+	margin-left: 10px;
+	width: 25%;
+	height: 100%;
+	float: left;
+}
+table {
+    border-collapse: collapse;
+}
+th, td{
+    padding: 10px;
+}
+#currentPaging {
+	border: 1px solid blue;
+	color: red;
+	font-size: 15pt;
+	padding: 5px 8px;
+	margin: 3px;
+	cursor:pointer;
+}
+#paging {
+	color: black;
+	font-size: 15pt;	
+	padding: 5px 8px;
+	margin: 3px;
+	cursor:pointer;
+}
+span:hover {
+	text-decoration: underline;
+}
+.thumnail img:hover{
+	transform:scale(3);
+	transition: transform 1s;
+}
+.thumnail img{
+	transition: transform 1s;
+}
+input[type = "button"], input[type = "submit"]{
+	color: #ffffff;
+	background: gray;
+	border-radius: 10px;
+	padding: 5px 30px;
+	border-style: none;
+	width:150px;
+	height: 40px;
+	margin-top: 10px;
+}
+input[type = "button"]:hover , input[type = "submit"]:hover{
+	background: black;
+	font-weight: bold;
+}
+#pagingWrap:after{
+	clear:both;
+}

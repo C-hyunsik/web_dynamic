@@ -4,8 +4,8 @@
 <c:if test = "${userId == null }">
 <div id = btnInfo>
 	<div id = Btn>
-		<input type = button value = 카페가입하기 /><br/>
-		<input type = button value = 로그인 />
+		<input id = writeBtn type = button value = 카페가입하기 /><br/>
+		<input id = loginBtn type = button value = 로그인 />
 	</div>
 </div>
 </c:if>
@@ -39,3 +39,14 @@
 	</div>
 </div>
 </c:if>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	$('#writeBtn').click(function(){
+		location.href = "member/writeForm.do";
+	});
+	$('#loginBtn').click(function(){
+		location.href = "member/loginForm.do";
+	});
+});
+</script>

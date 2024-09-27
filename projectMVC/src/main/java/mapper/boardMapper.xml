@@ -3,20 +3,45 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="boardSQL">
-	<insert id="boardWrite" parameterType="Map">
+		<!-- 오라클
+		<insert id="boardWrite" parameterType="Map">
 		INSERT INTO board (SEQ, ID, NAME, EMAIL, SUBJECT, CONTENT, REF) 
 		VALUES (seq_board.NEXTVAL, #{id}, #{name}, #{email}, #{subject}, #{content}, seq_board.CURRVAL)
+		</insert>
+		-->
+		<!-- MySQL -->
+	<insert id="boardWrite" parameterType="Map" useGeneratedKeys="true" keyProperty="seq">
+		INSERT INTO board (ID, NAME, EMAIL, SUBJECT, CONTENT) 
+		VALUES (#{id}, #{name}, #{email}, #{subject}, #{content})
 	</insert>
+	<update id="refUpdate" parameterType="Map">
+		update board set ref = last_insert_id() where seq = last_insert_id()
+	</update>
 	<select id="boardList" parameterType="Map" resultType="boardDTO">
+	  <!-- 오라클
 	  <![CDATA[
 		SELECT * FROM (
 		SELECT ROWNUM rn, tt.* FROM (
 		SELECT * FROM board ORDER BY ref DESC, step ASC
 		) tt
 		) WHERE rn >= #{startNum} AND rn <= #{endNum}
-	  ]]>
+	  ]]> -->
+	  <!-- MySQL -->
+	  select * from board order by ref desc, step asc limit #{startNum}, #{endNum}
 	</select>
 	<select id="getTotalA" resultType="Integer">
 		SELECT COUNT(*) FROM BOARD
 	</select>
+	<select id="boardView" parameterType = "Integer" resultType="boardDTO">
+		SELECT * FROM BOARD WHERE SEQ = #{seq}
+	</select>
+	<delete id = "boardDelete" parameterType = "Integer">
+		DELETE FROM BOARD WHERE SEQ = #{seq}
+	</delete>
+	<update id = "boardUpdate" parameterType = "Map">
+		UPDATE BOARD SET SUBJECT = #{subject}, CONTENT = #{content}, logTime = now() WHERE SEQ = #{seq}
+	</update>
+	<update id = "boardHitUpdate" parameterType = "Integer">
+		UPDATE BOARD SET HIT = HIT+1 WHERE SEQ = #{seq}
+	</update>
 </mapper>

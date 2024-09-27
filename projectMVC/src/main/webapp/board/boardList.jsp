@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -67,6 +68,10 @@ th, td{
 span:hover {
 	text-decoration: underline;
 }
+.subjectA:link{color:black; text-decoration:none;}
+.subjectA:visited{color:black; text-decoration:none;}
+.subjectA:hover{color:black; text-decoration:none; font-weight:bold;}
+.subjectA:active{color:black; text-decoration:none;}
 </style>
 </head>
 <body>
@@ -79,6 +84,8 @@ span:hover {
 		</h1>
 		<jsp:include page = "../main/menu.jsp" />
 	</div>
+	<input id = "memId" type = "hidden" value = "${memId}">
+	<input id = "pg" type = "hidden" value = "${requestScope.pg }">
 	<table border="1" frame="hsides" rules="rows">
 		<tr>
 			<th width="100">글번호</th>
@@ -91,10 +98,14 @@ span:hover {
 		<c:if test="${list != null}">
 			<c:forEach var = "boardDTO" items = "${list}">
 				<tr>
-					<td align="center">${boardDTO.seq}</td>
-					<td>${boardDTO.subject}</td>
-					<td align="center">${boardDTO.id}</td>
-					<td align="center">${boardDTO.logtime}</td>
+					<td align="center" data-seq = "${boardDTO.seq}">${boardDTO.seq}</td>
+					<td><a href = "#" class = subjectA>${boardDTO.subject}</a></td>
+					<td align="center">${boardDTO.id}
+					<input type = "hidden" class = "postId" value = "${boardDTO.id}" /></td>
+					<td align="center">
+						<fmt:parseDate value="${boardDTO.logtime}" pattern="yyyy-MM-dd HH:mm:ss" var="logtimeDate" />
+						<fmt:formatDate pattern = "yyyy.MM.dd" value = "${logtimeDate}"/>
+					</td>
 					<td align="center">${boardDTO.hit}</td>
 				</tr>
 			</c:forEach>
@@ -104,10 +115,40 @@ span:hover {
 	${pagingHTML }
 	</div>
 </div>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script type="text/javascript">
 function boardPaging(pg){
 	location.href = "boardList.do?pg=" + pg;
 }
+$(document).on('click','.subjectA',function(){
+	if($('#memId').val() == ''){
+		alert('먼저 로그인하세요');
+	}
+	else{
+		let seq = $(this).parent().prev().text();
+		let pg = $('#pg').val();
+		let memId = $('#memId').val();
+		let postId = $(this).closest('tr').find('.postId').val();
+		if(memId != postId){
+			$.ajax({
+				type:'post',
+				url:'./boardHitUpdate.do',
+				data:{'seq':seq},
+				dataType:'text',
+				success:function(){
+					location.href = './boardView.do?seq=' + seq + '&pg=' + pg;
+				},
+				error:function(e){
+					console.log(e);
+				}
+			});
+		}
+		else{
+			location.href = './boardView.do?seq=' + seq + '&pg=' + pg;
+		}
+	}
+	
+});
 </script>	
 </body>
 </html>
